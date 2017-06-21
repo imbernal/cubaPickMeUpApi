@@ -1,7 +1,19 @@
 const express = require("express");
 const app = express();
 
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-app.get('/' , function(req,res){
-  res.send('Heyyyy, Cuba pick me up');
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://root:root@ds131492.mlab.com:31492/cubapickmeup', (err, database) => {
+  if (err) return console.log(err);
+
+  const reservation = require('./routes/reservation.js')(app);
+  const destination = require('./routes/destination.js')(app);
+
+  app.listen(8080, () => {
+    console.log('listening on 8080');
+  });
 });
