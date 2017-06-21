@@ -1,30 +1,37 @@
 module.exports = function(app){
 
-  const Model = require("../models/models.js");
+  const Reservation = require("../models/reservation.js");
 
   findAllReservations = function(req, res){
 
-    res.send("ASASAS");
-    // Model.reservation.find(err , reser){
-    //
-    //   if(err){
-    //     console.log(err);
-    //   }else{
-    //     res.send(reser);
-    //   }
-    //
-    // }
+    Reservation.find(function(err, results){
+
+      if(err) return res.status(500).send(err);
+
+      res.send(results);
+
+    });
+
   }
 
 
-  // saveReservation = function(req, res){
-  //
-  //   var reservation = new Model.reservation({
-  //
-  //   });
+  saveReservation = function(req, res){
 
-  // }
+    var newReservation = new Reservation({
+
+      userName: req.body.userName,
+      userEmail: req.body.userEmail,
+      userPhone: req.body.userPhone,
+      pickUpTime: req.body.pickUpTime,
+      arriveTime: req.body.arriveTime,
+      origin: req.body.origin,
+      destination: req.body.destination
+    });
+
+    newReservation.save();
+    res.send(newReservation);
+  }
 
   app.get("/reservations" , findAllReservations);
-
+  app.post("/reservation" , saveReservation);
 }

@@ -12,6 +12,7 @@ mongoose.connect('mongodb://root:root@ds131492.mlab.com:31492/cubapickmeup', (er
 
   const reservation = require('./routes/reservation.js')(app);
   const destination = require('./routes/destination.js')(app);
+  const origin = require('./routes/origin.js')(app);
 
   app.listen(8080, () => {
     console.log('listening on 8080');
