@@ -15,7 +15,6 @@ module.exports = function(app){
 
     });
 
-
   }
 
   saveOrigin = function(req , res){
@@ -32,7 +31,25 @@ module.exports = function(app){
 
   }
 
+  originByType = function(req , res){
+
+    Origin.findOne({ "type" : 'fff' } , function(err,result){
+
+      if(err){
+        res.status(500).send(res);
+      }else{
+
+          res.send(result);
+      }
+  
+    });
+
+
+
+  }
+
   app.get("/origins" , findAllOrigin);
   app.post("/origin" , saveOrigin);
+  app.get("/origin/bytype" , originByType);
 
 }
