@@ -22,8 +22,8 @@ module.exports = function(app){
       userName: req.body.userName,
       userEmail: req.body.userEmail,
       userPhone: req.body.userPhone,
+      pickUpDate: req.body.pickUpDate,
       pickUpTime: req.body.pickUpTime,
-      arriveTime: req.body.arriveTime,
       origin: req.body.origin,
       destination: req.body.destination
     });

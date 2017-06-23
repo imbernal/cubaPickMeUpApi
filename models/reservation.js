@@ -10,8 +10,8 @@ var reservationSchema = new Schema({
   userName: {type: String},
   userEmail: {type: String},
   userPhone: {type: String},
+  pickUpDate: {type: Date},
   pickUpTime: {type: Date},
-  arriveTime: {type: Date},
   origin: [{ type: Schema.Types.ObjectId, ref: origin }],
   destination: [{ type: Schema.Types.ObjectId, ref: destination }]
 
