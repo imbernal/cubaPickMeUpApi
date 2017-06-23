@@ -31,7 +31,22 @@ module.exports = function (app) {
 
   }
 
+  findByType = function(req , res){
+
+    Destination.findOne({ type: "something" } , function(err , result){
+
+        if(err){
+          console.log(err);
+          res.status(500).send(err);
+        }else{
+          res.send(result);
+        }
+    });
+
+  }
+
   app.get("/destinations" , findAllDestination);
+  app.get("/destination/bytype" , findAllDestination);
   app.post("/destination" , saveDestination);
 
 };
